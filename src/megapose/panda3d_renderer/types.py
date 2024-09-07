@@ -164,7 +164,15 @@ class Panda3dCamera:
         resolution_ = (resolution[1], resolution[0])
         window_props.setSize(*resolution_)
 
-        frame_buffer_props = p3d.core.FrameBufferProperties.getDefault()
+        frame_buffer_props = p3d.core.FrameBufferProperties()
+        frame_buffer_props.setColorBits(24)
+        frame_buffer_props.setRedBits(8)
+        frame_buffer_props.setGreenBits(8)
+        frame_buffer_props.setBlueBits(8)
+        frame_buffer_props.setAlphaBits(8)
+        frame_buffer_props.setBackBuffers(1)
+        frame_buffer_props.setForceHardware(True)
+        frame_buffer_props.setForceSoftware(True)
         graphics_buffer = app.graphicsEngine.make_output(
             app.pipe,
             f"Graphics Buffer [{name}]",
